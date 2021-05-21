@@ -1,2 +1,2 @@
-# calculator
+# Calculator
 TOP project: Build a calculator
