@@ -16,7 +16,16 @@ function Divide(a, b) {
   return a / b;
 }
 
-console.log(Add(3, 4));
-console.log(Subtract(10, 4));
-console.log(Multiply(3, 4));
-console.log(Divide(10, 2));
+// console.log(Add(3, 4));
+// console.log(Subtract(10, 4));
+// console.log(Multiply(3, 4));
+// console.log(Divide(10, 2));
+
+function Operate(action, a, b) {
+  return action(a, b);
+}
+
+console.log(Operate(Add, 4, 1));
+console.log(Operate(Divide, 4, 2));
+console.log(Operate(Multiply, 4, 3));
+console.log(Operate(Subtract, 4, 1));
