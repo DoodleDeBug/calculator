@@ -36,3 +36,5 @@ const clear = document.querySelector("clear");
 const del = document.querySelector("del");
 const equal = document.querySelector("equal");
 const point = document.querySelector("decimal");
+
+const display = document.querySelector("screen");
