@@ -7,11 +7,16 @@
   font-weight: bold;
 }
 
+body {
+  background-color: rgb(29, 25, 25);
+}
+
 h1 {
   text-align: center;
   margin: 4rem 0;
   font-size: 50px;
-  letter-spacing: 7px;
+  letter-spacing: 2px;
+  color: rgb(231, 231, 231);
 }
 
 .calc-body {
@@ -19,21 +24,22 @@ h1 {
   background-color: rgb(179, 177, 177);
   width: 340px;
   margin: 0 auto;
-  border: 3px solid rgb(99, 99, 99);
+  border: 3px solid rgb(204, 203, 203);
   border-radius: 10px;
   padding: 20px 15px;
   box-shadow: 4px 5px 2px 1px rgba(0, 0, 0, 0.096);
 }
 
 .screen {
-  background-color: rgb(230, 230, 230);
-  border: 2.5px solid rgb(99, 99, 99);
+  background-color: rgb(114, 114, 114);
+  border: 2.5px solid rgb(211, 211, 211);
+  color: rgb(230, 225, 225);
   border-radius: 5px;
   padding: 5px 20px;
   height: 70px;
   display: flex;
   flex-direction: row;
-  justify-content: end;
+  justify-content: flex-end;
   align-items: center;
   letter-spacing: 1px;
   font-size: 30px;
