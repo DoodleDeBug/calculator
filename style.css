@@ -37,6 +37,7 @@ h1 {
   align-items: center;
   letter-spacing: 1px;
   font-size: 30px;
+  overflow: hidden;
 }
 
 .big-btn-container {
