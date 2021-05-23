@@ -24,6 +24,7 @@ console.log(Operate(Multiply, 4, 2));
 //declare variables
 let display = "";
 let action = "";
+let index;
 
 //other functions
 updateDisplayVal = () => (display = screen.innerText);
@@ -73,8 +74,14 @@ function DisplayVal(e) {
 
 function Calc() {
   calculation = Array.from(display);
-
-  switch (calculation[1]) {
+  console.log(calculation);
+  let index =
+    calculation.indexOf("+") ||
+    calculation.indexOf("−") ||
+    calculation.indexOf("÷") ||
+    calculation.indexOf("×");
+  console.log(index);
+  switch (calculation[index]) {
     case "+":
       action = Add;
       break;
@@ -93,5 +100,9 @@ function Calc() {
     default:
       console.log("default");
   }
-  screen.innerText = Operate(action, calculation[0], calculation[2]);
+  screen.innerText = Operate(
+    action,
+    calculation.slice[(0, index)].join,
+    calculation.slice[index + 1].join
+  );
 }
