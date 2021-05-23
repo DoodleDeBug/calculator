@@ -27,7 +27,7 @@ h1 {
 
 .screen {
   background-color: rgb(230, 230, 230);
-  border: 3px solid rgb(99, 99, 99);
+  border: 2.5px solid rgb(99, 99, 99);
   border-radius: 5px;
   padding: 5px 20px;
   height: 70px;
