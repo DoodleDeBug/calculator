@@ -85,8 +85,21 @@ function Calc(e) {
     action = Multiply;
   }
 
+  function isTwoOperators() {
+    (calculation.includes("+") ||
+      calculation.includes("−") ||
+      calculation.includes("÷") ||
+      calculation.includes("×")) &&
+    (calculation.includes("+") ||
+      calculation.includes("−") ||
+      calculation.includes("÷") ||
+      calculation.includes("×"))
+      ? true
+      : false;
+  }
+
   // console.log(index);
-  if (calculation.length > 3) {
+  if (calculation.length > 3 && isTwoOperators) {
     screen.innerText = Operate(
       action,
       calculation.slice(0, index).join(""),
