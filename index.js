@@ -75,34 +75,26 @@ function DisplayVal(e) {
 function Calc() {
   calculation = Array.from(display);
   console.log(calculation);
-  let index =
-    calculation.indexOf("+") ||
-    calculation.indexOf("−") ||
-    calculation.indexOf("÷") ||
-    calculation.indexOf("×");
-  console.log(index);
-  switch (calculation[index]) {
-    case "+":
-      action = Add;
-      break;
-    case "−":
-      action = Subtract;
-      // screen.innerText = Operate(action, calculation[0], calculation[2]);
-      break;
-    case "÷":
-      action = Divide;
-      // screen.innerText = Operate(action, calculation[0], calculation[2]);
-      break;
-    case "×":
-      action = Multiply;
-      // screen.innerText = Operate(action, calculation[0], calculation[2]);
-      break;
-    default:
-      console.log("default");
+
+  if (calculation.includes("+")) {
+    index = calculation.indexOf("+");
+    action = Add;
+  } else if (calculation.includes("−")) {
+    index = calculation.indexOf("−");
+    action = Subtract;
+  } else if (calculation.includes("÷")) {
+    index = calculation.indexOf("÷");
+    action = Divide;
+  } else if (calculation.includes("×")) {
+    index = calculation.indexOf("×");
+    action = Multiply;
   }
+
+  // console.log(index);
+
   screen.innerText = Operate(
     action,
-    calculation.slice[(0, index)].join,
-    calculation.slice[index + 1].join
+    calculation.slice(0, index).join(""),
+    calculation.slice(index + 1).join("")
   );
 }
