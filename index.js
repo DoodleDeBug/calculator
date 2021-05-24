@@ -1,29 +1,28 @@
 ///basic calc functions
 
 function Add(a, b) {
-  return a + b;
+  return parseInt(a) + parseInt(b);
 }
 
 function Subtract(a, b) {
-  return a - b;
+  return parseInt(a) - parseInt(b);
 }
 
 function Multiply(a, b) {
-  return a * b;
+  return parseInt(a) * parseInt(b);
 }
 
 function Divide(a, b) {
-  return a / b;
+  return parseInt(a) / parseInt(b);
 }
 
 function Operate(action, a, b) {
   return action(a, b);
 }
 
-console.log(Operate(Multiply, 4, 2));
 //declare variables
 let display = "";
-let action = "";
+let action;
 let index;
 
 //other functions
@@ -42,15 +41,10 @@ const screen = document.querySelector(".screen");
 //add eventListeners
 nums.forEach((num) => num.addEventListener("click", DisplayVal));
 operators.forEach((op) => op.addEventListener("click", DisplayVal));
+operators.forEach((op) => op.addEventListener("click", Calc));
 clear.addEventListener("click", Clear);
 del.addEventListener("click", Delete);
-equal.addEventListener("click", Calc);
-
-// function (e) {
-//   // console.log(display.innerText);
-//   // console.log(e.target.innerText);
-//   screen.innerText += e.target.innerText;
-// }
+equal.addEventListener("click", Calc2);
 
 //Button functions
 function Clear() {
@@ -69,11 +63,42 @@ function Delete() {
 function DisplayVal(e) {
   screen.innerText += e.target.innerText;
   updateDisplayVal();
-  console.log(display);
+  // console.log(display);
 }
 
-function Calc() {
+function Calc(e) {
   calculation = Array.from(display);
+
+  console.log(calculation);
+
+  if (calculation.includes("+")) {
+    index = calculation.indexOf("+");
+    action = Add;
+  } else if (calculation.includes("−")) {
+    index = calculation.indexOf("−");
+    action = Subtract;
+  } else if (calculation.includes("÷")) {
+    index = calculation.indexOf("÷");
+    action = Divide;
+  } else if (calculation.includes("×")) {
+    index = calculation.indexOf("×");
+    action = Multiply;
+  }
+
+  // console.log(index);
+  if (calculation.length > 3) {
+    screen.innerText = Operate(
+      action,
+      calculation.slice(0, index).join(""),
+      calculation.slice(index + 1, calculation.length - 1).join("")
+    );
+    DisplayVal(e);
+  }
+}
+
+function Calc2() {
+  calculation = Array.from(display);
+
   console.log(calculation);
 
   if (calculation.includes("+")) {
