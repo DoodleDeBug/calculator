@@ -16,27 +16,27 @@ h1 {
   margin: 4rem 0;
   font-size: 50px;
   letter-spacing: 2px;
-  color: rgb(231, 231, 231);
+  color: rgb(233, 233, 233);
 }
 
 .calc-body {
   text-align: center;
-  background-color: rgb(179, 177, 177);
+  background-color: rgb(173, 173, 173);
   width: 340px;
   margin: 0 auto;
   border: 3px solid rgb(204, 203, 203);
-  border-radius: 10px;
-  padding: 20px 15px;
+  border-radius: 7px;
+  padding: 22px 18px 10px;
   box-shadow: 4px 5px 2px 1px rgba(0, 0, 0, 0.096);
 }
 
 .screen {
-  background-color: rgb(114, 114, 114);
+  background-color: rgb(100, 155, 236);
   border: 2.5px solid rgb(211, 211, 211);
   color: rgb(230, 225, 225);
-  border-radius: 5px;
+  border-radius: 7px;
   padding: 5px 20px;
-  height: 70px;
+  height: 90px;
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
@@ -44,11 +44,12 @@ h1 {
   letter-spacing: 1px;
   font-size: 30px;
   overflow: hidden;
+  box-shadow: 0 2px 2px 1px rgba(0, 0, 0, 0.185);
 }
 
 .big-btn-container {
   margin-top: 10px;
-  padding: 5px 0;
+  padding: 7px 0;
   display: flex;
   gap: 15px;
 }
