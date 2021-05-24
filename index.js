@@ -85,21 +85,25 @@ function Calc(e) {
     action = Multiply;
   }
 
-  function isTwoOperators() {
-    (calculation.includes("+") ||
-      calculation.includes("−") ||
-      calculation.includes("÷") ||
-      calculation.includes("×")) &&
-    (calculation.includes("+") ||
-      calculation.includes("−") ||
-      calculation.includes("÷") ||
-      calculation.includes("×"))
-      ? true
-      : false;
-  }
+  // function isTwoOperators() {
+  //   if (
+  //     (calculation.includes("+") ||
+  //       calculation.includes("−") ||
+  //       calculation.includes("÷") ||
+  //       calculation.includes("×")) &&
+  //     (calculation.includes("+") ||
+  //       calculation.includes("−") ||
+  //       calculation.includes("÷") ||
+  //       calculation.includes("×"))
+  //   ) {
+  //     return true;
+  //   }
+  // }
+  // console.log(isTwoOperators == true);
 
   // console.log(index);
-  if (calculation.length > 3 && isTwoOperators) {
+
+  if (calculation.length > 3) {
     screen.innerText = Operate(
       action,
       calculation.slice(0, index).join(""),
