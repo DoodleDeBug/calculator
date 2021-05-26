@@ -1,19 +1,19 @@
 ///basic calc functions
 
 function Add(a, b) {
-  return parseInt(a) + parseInt(b);
+  return parseFloat(a) + parseFloat(b);
 }
 
 function Subtract(a, b) {
-  return parseInt(a) - parseInt(b);
+  return parseFloat(a) - parseFloat(b);
 }
 
 function Multiply(a, b) {
-  return parseInt(a) * parseInt(b);
+  return parseFloat(a) * parseFloat(b);
 }
 
 function Divide(a, b) {
-  return parseInt(a) / parseInt(b);
+  return parseFloat(a) / parseFloat(b);
 }
 
 function Operate(action, a, b) {
@@ -24,6 +24,8 @@ function Operate(action, a, b) {
 let display = "";
 let action;
 let index;
+let firstVal;
+let nextVal;
 
 //other functions
 updateDisplayVal = () => (display = screen.innerText);
@@ -45,9 +47,11 @@ operators.forEach((op) => op.addEventListener("click", Calc));
 clear.addEventListener("click", Clear);
 del.addEventListener("click", Delete);
 equal.addEventListener("click", Calc2);
+point.addEventListener("click", DisplayVal);
 
 //Button functions
 function Clear() {
+  point.addEventListener("click", DisplayVal);
   screen.innerText = "";
   updateDisplayVal();
   // console.log(display);
@@ -85,6 +89,15 @@ function Calc(e) {
     action = Multiply;
   }
 
+  if (calculation.includes(".") && calculation.length > 4) {
+    firstVal = calculation.slice(0, index).join("");
+    point.removeEventListener("click", DisplayVal);
+    console.log(firstVal);
+    nextVal = calculation.slice(index + 1, calculation.length - 1).join("");
+    screen.innerText = Operate(action, firstVal, nextVal);
+    DisplayVal(e);
+  }
+
   // function isTwoOperators() {
   //   if (
   //     (calculation.includes("+") ||
@@ -103,12 +116,10 @@ function Calc(e) {
 
   // console.log(index);
 
-  if (calculation.length > 3) {
-    screen.innerText = Operate(
-      action,
-      calculation.slice(0, index).join(""),
-      calculation.slice(index + 1, calculation.length - 1).join("")
-    );
+  if (calculation.length > 3 && !calculation.includes(".")) {
+    firstVal = calculation.slice(0, index).join("");
+    nextVal = calculation.slice(index + 1, calculation.length - 1).join("");
+    screen.innerText = Operate(action, firstVal, nextVal);
     DisplayVal(e);
   }
 }
