@@ -151,3 +151,5 @@ function Calc2() {
     calculation.slice(index + 1).join("")
   );
 }
+
+// when press an operator first time, save display as val1, when press equal, if val1 exists, then save as val2, and calc; if press operator second time, update val1 to equal calc of prev val1 and display....
