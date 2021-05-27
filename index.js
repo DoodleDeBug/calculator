@@ -23,12 +23,23 @@ function Operate(action, a, b) {
 //declare variables
 let display = "";
 let action;
-let index;
-let firstVal;
-let nextVal;
 
 //other functions
+const Round = (n, d) => Math.round(n * Math.pow(10, d)) / Math.pow(10, d); // borrowed this from someone else :)
+
 updateDisplayVal = () => (display = screen.innerText);
+
+function checkDisplay() {
+  Array.from(display).length > 11
+    ? nums.forEach((num) => num.removeEventListener("click", DisplayVal))
+    : null;
+}
+
+function checkPoint() {
+  Array.from(display).includes(".")
+    ? point.removeEventListener("click", DisplayVal)
+    : null;
+}
 
 // query selectors
 const nums = document.querySelectorAll(".num");
@@ -41,15 +52,16 @@ const point = document.querySelector(".decimal");
 const screen = document.querySelector(".screen");
 
 //add eventListeners
-nums.forEach((num) => num.addEventListener("click", DisplayVal));
-nums.forEach((num) => num.addEventListener("click", checkDisplay));
-operators.forEach((op) => op.addEventListener("click", DisplayVal));
-operators.forEach((op) => op.addEventListener("click", Calc));
-operators.forEach((op) => op.addEventListener("click", checkDisplay));
 clear.addEventListener("click", Clear);
 del.addEventListener("click", Delete);
 equal.addEventListener("click", Calc2);
+point.addEventListener("click", checkPoint);
 point.addEventListener("click", DisplayVal);
+nums.forEach((num) => num.addEventListener("click", checkDisplay));
+nums.forEach((num) => num.addEventListener("click", DisplayVal));
+operators.forEach((op) => op.addEventListener("click", checkDisplay));
+operators.forEach((op) => op.addEventListener("click", DisplayVal));
+operators.forEach((op) => op.addEventListener("click", Calc));
 
 //Button functions
 function Clear() {
@@ -76,68 +88,52 @@ function DisplayVal(e) {
 
 function Calc(e) {
   calculation = Array.from(display);
-
   console.log(calculation);
+  let newCalc = calculation.slice(0, calculation.length - 1);
+  console.log(newCalc);
 
-  if (calculation.includes("+")) {
-    index = calculation.indexOf("+");
+  let index = 0;
+
+  if (newCalc.includes("+")) {
+    index = newCalc.indexOf("+");
     action = Add;
-  } else if (calculation.includes("−")) {
-    index = calculation.indexOf("−");
+  } else if (newCalc.includes("-")) {
+    index = newCalc.indexOf("-");
     action = Subtract;
-  } else if (calculation.includes("÷")) {
-    index = calculation.indexOf("÷");
+  } else if (newCalc.includes("÷")) {
+    index = newCalc.indexOf("÷");
     action = Divide;
-  } else if (calculation.includes("×")) {
-    index = calculation.indexOf("×");
+  } else if (newCalc.includes("×")) {
+    index = newCalc.indexOf("×");
     action = Multiply;
   }
 
-  if (calculation.includes(".") && calculation.length > 4) {
+  let firstVal;
+
+  if (index != 0) {
     firstVal = calculation.slice(0, index).join("");
-    point.removeEventListener("click", DisplayVal);
-    console.log(firstVal);
-    nextVal = calculation.slice(index + 1, calculation.length - 1).join("");
-    screen.innerText = Operate(action, firstVal, nextVal);
+    let nextVal = calculation.slice(index + 1).join("");
+    let answer = Round(Operate(action, firstVal, nextVal), 6);
+    screen.innerText = answer;
     DisplayVal(e);
+    // console.log("did something");
   }
 
-  // function isTwoOperators() {
-  //   if (
-  //     (calculation.includes("+") ||
-  //       calculation.includes("−") ||
-  //       calculation.includes("÷") ||
-  //       calculation.includes("×")) &&
-  //     (calculation.includes("+") ||
-  //       calculation.includes("−") ||
-  //       calculation.includes("÷") ||
-  //       calculation.includes("×"))
-  //   ) {
-  //     return true;
-  //   }
-  // }
-  // console.log(isTwoOperators == true);
-
-  // console.log(index);
-
-  if (calculation.length > 3 && !calculation.includes(".")) {
-    firstVal = calculation.slice(0, index).join("");
-    nextVal = calculation.slice(index + 1, calculation.length - 1).join("");
-    screen.innerText = Operate(action, firstVal, nextVal);
-    DisplayVal(e);
-  }
+  // console.log(firstVal);
 }
 
 function Calc2() {
   calculation = Array.from(display);
+  // console.log("in calc2");
+  // console.log(calculation);
 
-  console.log(calculation);
+  let index;
 
   if (calculation.includes("+")) {
     index = calculation.indexOf("+");
     action = Add;
-  } else if (calculation.includes("−")) {
-    index = calculation.indexOf("−");
+  } else if (calculation.includes("-")) {
+    index = calculation.indexOf("-");
     action = Subtract;
   } else if (calculation.includes("÷")) {
     index = calculation.indexOf("÷");
@@ -146,21 +142,15 @@ function Calc2() {
     index = calculation.indexOf("×");
     action = Multiply;
   }
-
-  // console.log(index);
-
-  screen.innerText = Operate(
-    action,
-    calculation.slice(0, index).join(""),
-    calculation.slice(index + 1).join("")
+  let answer = Round(
+    Operate(
+      action,
+      calculation.slice(0, index).join(""),
+      calculation.slice(index + 1).join("")
+    ),
+    5
   );
+  screen.innerText = answer;
 }
 
-function checkDisplay() {
-  if (Array.from(display).length > 12) {
-    nums.forEach((num) => num.removeEventListener("click", DisplayVal));
-    // operators.forEach((op) => op.removeEventListener("click", DisplayVal));
-    // operators.forEach((op) => op.removeEventListener("click", Calc));
-  }
-}
 // when press an operator first time, save display as val1, when press equal, if val1 exists, then save as val2, and calc; if press operator second time, update val1 to equal calc of prev val1 and display....
