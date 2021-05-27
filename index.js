@@ -42,8 +42,10 @@ const screen = document.querySelector(".screen");
 
 //add eventListeners
 nums.forEach((num) => num.addEventListener("click", DisplayVal));
+nums.forEach((num) => num.addEventListener("click", checkDisplay));
 operators.forEach((op) => op.addEventListener("click", DisplayVal));
 operators.forEach((op) => op.addEventListener("click", Calc));
+operators.forEach((op) => op.addEventListener("click", checkDisplay));
 clear.addEventListener("click", Clear);
 del.addEventListener("click", Delete);
 equal.addEventListener("click", Calc2);
@@ -51,6 +53,7 @@ point.addEventListener("click", DisplayVal);
 
 //Button functions
 function Clear() {
+  nums.forEach((num) => num.addEventListener("click", DisplayVal));
   point.addEventListener("click", DisplayVal);
   screen.innerText = "";
   updateDisplayVal();
@@ -58,6 +61,7 @@ function Clear() {
 }
 
 function Delete() {
+  nums.forEach((num) => num.addEventListener("click", DisplayVal));
   let val = Array.from(screen.innerText);
   // console.log(val);
   screen.innerText = val.slice(0, val.length - 1).join("");
@@ -152,4 +156,11 @@ function Calc2() {
   );
 }
 
+function checkDisplay() {
+  if (Array.from(display).length > 12) {
+    nums.forEach((num) => num.removeEventListener("click", DisplayVal));
+    // operators.forEach((op) => op.removeEventListener("click", DisplayVal));
+    // operators.forEach((op) => op.removeEventListener("click", Calc));
+  }
+}
 // when press an operator first time, save display as val1, when press equal, if val1 exists, then save as val2, and calc; if press operator second time, update val1 to equal calc of prev val1 and display....
