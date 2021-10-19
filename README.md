@@ -1,6 +1,10 @@
 # Calculator
 TOP project: Build a calculator
 
+## To play
+
+Click [here](https://doodledebug.github.io/calculator/)
+
 ## What went well:
 * looks like a calculator
 * managed to overcome initial dificulties
